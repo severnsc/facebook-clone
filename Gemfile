@@ -8,8 +8,6 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
-# Use postgres as the database for Active Record
-gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -23,7 +21,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootstrap-sass'
 gem 'figaro'
 gem 'rails-controller-testing'
-
+gem 'devise'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -42,6 +40,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'ruby-prof'
+  gem 'pg'
 end
 
 group :development do
@@ -57,6 +56,7 @@ group :development do
 end
 
 gem 'rails_12factor', group: :production
+gem 'pg', group: :production
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

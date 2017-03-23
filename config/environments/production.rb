@@ -56,6 +56,8 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "facebook-clone_#{Rails.env}"
   config.action_mailer.perform_caching = false
+  host = 'stormy-garden-51940.herokuapp.com/'
+  config.action_mailer.default_url_options = {host: host, protocol: 'https'}
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
