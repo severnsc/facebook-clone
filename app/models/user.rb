@@ -16,4 +16,8 @@ class User < ApplicationRecord
   def pending_friends
     friends.where("accepted = ?", false)
   end
+
+  def full_name
+    "#{self.first_name.capitalize} #{self.last_name.capitalize}"
+  end
 end
