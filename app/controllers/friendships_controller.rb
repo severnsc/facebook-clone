@@ -7,6 +7,9 @@ class FriendshipsController < ApplicationController
     @friendship.friend = @friend
     @friendship.user = current_user
     if @friendship.save
+      @notification = Notification.new
+      @notification.update_attributes(user: @friend, sender: current_user)
+      @notification.save
       flash[:success] = "Friend request sent!"
       redirect_to user_path(params[:friend])
     else
