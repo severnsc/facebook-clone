@@ -21,6 +21,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
     if params['accepted'] == 'true'
       @friendship.update_attribute(:accepted, true)
+      @friendship.notification.update_attribute(:checked, true)
       flash[:suceess] = "You and #{@friendship.user.full_name} are now friends!"
       redirect_to user_path(@friendship.user)
     else
