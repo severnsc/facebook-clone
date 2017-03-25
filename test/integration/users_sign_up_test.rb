@@ -26,6 +26,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'devise/registrations/new'
     assert_difference 'User.count' do
       post user_registration_path, params: { user: { email: "user@example.com",
+                                                      first_name: "Test",
+                                                      last_name: "User",
                                                       password: "password",
                                                       password_confirmation: "password"}}
     end
