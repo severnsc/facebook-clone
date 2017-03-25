@@ -1,5 +1,5 @@
 class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: "User"
-  has_one :notification
+  has_one :notification, dependent: :destroy
 end
