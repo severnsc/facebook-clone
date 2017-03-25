@@ -91,6 +91,19 @@ p {
   right: auto;
   left:0;
 }
+
+#unchecked-notification{
+  color:white;
+}
+
+.notification-badge{
+  position:absolute;
+  background-color:red;
+  border-radius: 5px;
+  top:5px;
+  right:0px;
+  font-size:.9em;
+}
 /* footer */
 
 footer {
