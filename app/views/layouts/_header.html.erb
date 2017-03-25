@@ -30,8 +30,8 @@
                   <% current_user.notifications.each do |notification| %>
                     <li>
                       <%= notification.sender.full_name %> sent you a friend request.<br />
-                      <%= link_to "Accept", "/friendships/#{current_user.friendships.find_by_friend_id(notification.sender.id).id}?accepted=true", method: :patch %>
-                      <%= link_to "Decline", "/friendships/#{current_user.friendships.find_by_friend_id(notification.sender.id).id}?accepted=false", method: :patch %>
+                      <%= link_to "Accept", "/friendships/#{notification.friendship.id}?accepted=true", method: :patch %>
+                      <%= link_to "Decline", "/friendships/#{notification.friendship.id}?accepted=false", method: :patch %>
                     </li>
                     <li class="divider"></li>
                   <% end %>
