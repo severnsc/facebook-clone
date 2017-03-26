@@ -12,6 +12,18 @@
         <%= hidden_field_tag 'friend', @user.id %>
         <%= submit_tag "Send friend request", class: 'btn btn-primary' %>
       <% end %>
+    <% else %>
+      <h1>Create a new post</h1>
+      <%= form_tag(posts_path, method: :post) %>
+      <%= text_area_tag 'post[content]', "",class: 'form-control' %>
+      <%= submit_tag "Create post", class: 'btn btn-primary' %>
+      <% if current_user.posts.any? %>
+        <% current_user.posts.each do |post| %>
+          <div class="post">
+            <p><%= post.content %></p>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 </div>
