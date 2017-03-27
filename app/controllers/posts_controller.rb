@@ -14,7 +14,9 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @friend_ids = []
+    current_user.accepted_friends.each {|f| @friend_ids << f.id}
+    @posts = Post.where('user_id = ? OR user_id IN (?)', current_user.id, @friend_ids).order("created_at DESC")
   end
 
   def show

@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Newsfeed</h1>
+    <% @posts.each do |post| %>
+      <div class="post">
+        <p><%= post.user.full_name %></p>
+        <p><%= post.content %></p>
+        <p><%= pluralize(post.likes.count, "likes") %></p>
+        <% if post.user != current_user %>
+          <% if current_user.liked_posts.include?(post) %>
+            <%= form_tag(like_path(Like.find_by_post_id(post.id).id), method: :delete) %>
+            <%= submit_tag "Unlike", class: 'btn like-button' %>
+          <% else %>
+            <%= form_tag(likes_path, method: :post) %>
+            <%= hidden_field_tag 'post_id', post.id %>
+            <%= submit_tag "Like", class: 'btn btn-primary like-button' %>
+          <% end %>
+        <% end %>
+        <p><%= pluralize(post.comments.count, "comments") %></p>
+        <% if post.comments.any? %>
+          <% post.comments.each do |comment| %>
+            <div class="comment">
+              <p><%= comment.user.full_name %></p>
+              <p><%= comment.content %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
