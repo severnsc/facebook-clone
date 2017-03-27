@@ -1,9 +1,5 @@
 class PostsController < ApplicationController
 
-  def new
-    @post = Post.new
-  end
-
   def create
     @post = Post.new(post_params)
     @post.user = current_user
@@ -11,7 +7,8 @@ class PostsController < ApplicationController
       flash[:success] = "Post created!"
       redirect_to current_user
     else
-      render 'new'
+      flash[:danger] = "Invalid post!"
+      redirect_to current_user
     end
   end
 
