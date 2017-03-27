@@ -10,11 +10,11 @@
                 <p><%= post.content %></p>
                 <% if current_user.liked_posts.include?(post) %>
                   <%= form_tag(like_path(Like.find_by_post_id(post.id).id), method: :delete) %>
-                  <%= submit_tag "Unlike", class: 'btn btn-primary' %>
+                  <%= submit_tag "Unlike", class: 'btn like-button' %>
                 <% else %>
                   <%= form_tag(likes_path, method: :post) %>
                   <%= hidden_field_tag 'post_id', post.id %>
-                  <%= submit_tag "Like", class: 'btn btn-primary' %>
+                  <%= submit_tag "Like", class: 'btn btn-primary like-button' %>
                 <% end %>
               </div>
             <% end %>
