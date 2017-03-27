@@ -8,6 +8,9 @@
             <% @user.posts.each do |post| %>
               <div class="post">
                 <p><%= post.content %></p>
+                <% if post.likes.any? %>
+                  <p><%= pluralize(post.likes.count, "like") %> </p>
+                <% end %>
                 <% if current_user.liked_posts.include?(post) %>
                   <%= form_tag(like_path(Like.find_by_post_id(post.id).id), method: :delete) %>
                   <%= submit_tag "Unlike", class: 'btn like-button' %>
@@ -38,6 +41,9 @@
         <% current_user.posts.each do |post| %>
           <div class="post">
             <p><%= post.content %></p>
+            <% if post.likes.any? %>
+              <p><%= pluralize(post.likes.count, "like") %></p>
+            <% end %>
           </div>
         <% end %>
       <% end %>
