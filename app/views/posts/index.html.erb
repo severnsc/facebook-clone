@@ -19,7 +19,7 @@
         <p><%= pluralize(post.comments.count, "comments") %></p>
         <% if post.comments.any? %>
           <% post.comments.each do |comment| %>
-            <div class="comment">
+            <div class="comment col-md-offset-1">
               <p><%= comment.user.full_name %></p>
               <p><%= comment.content %></p>
             </div>

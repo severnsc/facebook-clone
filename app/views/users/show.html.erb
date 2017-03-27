@@ -24,7 +24,7 @@
                 <% if post.comments.any? %>
                   <p><%= pluralize(post.comments.count, "comment") %></p>
                   <% post.comments.each do |comment| %>
-                    <div class="comment">
+                    <div class="comment col-md-offset-1">
                       <p><%= comment.user.full_name %></p>
                       <p><%= comment.content %></p>
                       <% if comment.user == current_user %>
@@ -65,8 +65,10 @@
             <% if post.comments.any? %>
               <p><%= pluralize(post.comments.count, "comment") %></p>
               <% post.comments.each do |comment| %>
-                <p><%= comment.user.full_name %></p>
-                <p><%= comment.content %></p>
+                <div class="comment col-md-offset-1">
+                  <p><%= comment.user.full_name %></p>
+                  <p><%= comment.content %></p>
+                </div>
               <% end %>
             <% end %>
           </div>
