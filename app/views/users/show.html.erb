@@ -4,6 +4,23 @@
       <% if current_user.friends.include?(@user) %>
         <% if current_user.friendships.find_by_friend_id(@user.id).accepted? %>
           <%= link_to "Remove friend", friendship_path, method: :delete, class: 'btn btn-primary' %>
+          <% if @user.posts.any? %>
+            <% @user.posts.each do |post| %>
+              <div class="post">
+                <p><%= post.content %></p>
+                <% if current_user.liked_posts.include?(post) %>
+                  <%= form_tag(like_path(Like.find_by_post_id(post.id).id), method: :delete) %>
+                  <%= submit_tag "Unlike", class: 'btn btn-primary' %>
+                <% else %>
+                  <%= form_tag(likes_path, method: :post) %>
+                  <%= hidden_field_tag 'post_id', post.id %>
+                  <%= submit_tag "Like", class: 'btn btn-primary' %>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <p>This user has no posts!</p>
+          <% end %>
         <% else %>
           <%= link_to "Remove friend request", friendship_path, method: :delete, class: 'btn btn-primary' %>
         <% end %>

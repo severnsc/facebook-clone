@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
   has_many :notifications, dependent: :destroy
   has_many :posts, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
   validates :first_name, presence: true
   validates :last_name, presence: true

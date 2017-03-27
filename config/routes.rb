@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index]
   resources :friendships, only: [:create, :destroy, :update]
   resources :posts, except: [:new]
+  resources :likes, only: [:create, :destroy]
   root 'static_pages#home'
 end
