@@ -1,5 +1,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <h1><%= @user.full_name %></h1>
+    <%= image_tag avatar_for(@user), class: 'avatar' %>
     <% if current_user != @user %>
       <% if current_user.friends.include?(@user) %>
         <% if current_user.friendships.find_by_friend_id(@user.id).accepted? %>
@@ -25,6 +27,7 @@
                   <p><%= pluralize(post.comments.count, "comment") %></p>
                   <% post.comments.each do |comment| %>
                     <div class="comment col-md-offset-1">
+                      <%= image_tag avatar_for(comment.user), class: 'comment-avatar' %>
                       <p><%= comment.user.full_name %></p>
                       <p><%= comment.content %></p>
                       <% if comment.user == current_user %>

@@ -234,3 +234,22 @@ a.btn{
   border-top: 1px solid $gray-light;
   margin-bottom:10px;
 }
+
+/* Users index */
+
+.user{
+  border-bottom: 1px solid $gray-light;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+/* Avatars */
+.avatar{
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.comment-avatar{
+  margin-top: 10px;
+}

@@ -3,6 +3,7 @@
     <h1>Newsfeed</h1>
     <% @posts.each do |post| %>
       <div class="post">
+        <%= image_tag avatar_for(post.user), class: 'comment-avatar' %>
         <p><%= post.user.full_name %></p>
         <p><%= post.content %></p>
         <p><%= pluralize(post.likes.count, "likes") %></p>
@@ -20,6 +21,7 @@
         <% if post.comments.any? %>
           <% post.comments.each do |comment| %>
             <div class="comment col-md-offset-1">
+              <%= image_tag avatar_for(comment.user), class: 'comment-avatar' %>
               <p><%= comment.user.full_name %></p>
               <p><%= comment.content %></p>
             </div>
