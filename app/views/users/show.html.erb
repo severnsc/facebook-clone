@@ -12,13 +12,27 @@
                   <p><%= pluralize(post.likes.count, "like") %> </p>
                 <% end %>
                 <% if current_user.liked_posts.include?(post) %>
-                  <%= form_tag(like_path(Like.find_by_post_id(post.id).id), method: :delete) %>
-                  <%= submit_tag "Unlike", class: 'btn like-button' %>
+                  <%= form_tag(like_path(Like.find_by_post_id(post.id).id), method: :delete) do %>
+                    <%= submit_tag "Unlike", class: 'btn like-button' %>
+                  <% end %>
                 <% else %>
-                  <%= form_tag(likes_path, method: :post) %>
-                  <%= hidden_field_tag 'post_id', post.id %>
-                  <%= submit_tag "Like", class: 'btn btn-primary like-button' %>
+                  <%= form_tag(likes_path, method: :post) do %>
+                    <%= hidden_field_tag 'post_id', post.id %>
+                    <%= submit_tag "Like", class: 'btn btn-primary like-button' %>
+                  <% end %>
                 <% end %>
+                <% if post.comments.any? %>
+                  <% post.comments.each do |comment| %>
+                    <div class="comment">
+                      <p><%= comment.user.full_name %></p>
+                      <p><%= comment.content %></p>
+                    </div>
+                  <% end %>
+                <% end %>
+                <%= form_tag(comments_path, method: :post) %>
+                <%= hidden_field_tag 'post_id', post.id %>
+                <%= text_area_tag 'comment[content]', "", class: 'form-control' %>
+                <%= submit_tag 'Post comment', class: 'btn btn-primary' %>
               </div>
             <% end %>
           <% else %>

@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :friendships, only: [:create, :destroy, :update]
   resources :posts, except: [:new]
   resources :likes, only: [:create, :destroy]
+  resources :comments, only: [:create, :edit, :update, :destroy]
   root 'static_pages#home'
 end
