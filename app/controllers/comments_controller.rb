@@ -16,12 +16,24 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id])
   end
 
   def update
+    @comment = Comment.find(params[:id])
+    if @comment.update_attributes(comment_params)
+      flash[:success] = "Comment edited!"
+      redirect_to user_path(@comment.post.user)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+    @comment.delete
+    flash[:success] = "Comment deleted!"
+    redirect_to user_path(@comment.post.user)
   end
 
   private
