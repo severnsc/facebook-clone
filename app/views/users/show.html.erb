@@ -22,6 +22,7 @@
                   <% end %>
                 <% end %>
                 <% if post.comments.any? %>
+                  <p><%= pluralize(post.comments.count, "comment") %></p>
                   <% post.comments.each do |comment| %>
                     <div class="comment">
                       <p><%= comment.user.full_name %></p>
@@ -60,6 +61,13 @@
             <p><%= post.content %></p>
             <% if post.likes.any? %>
               <p><%= pluralize(post.likes.count, "like") %></p>
+            <% end %>
+            <% if post.comments.any? %>
+              <p><%= pluralize(post.comments.count, "comment") %></p>
+              <% post.comments.each do |comment| %>
+                <p><%= comment.user.full_name %></p>
+                <p><%= comment.content %></p>
+              <% end %>
             <% end %>
           </div>
         <% end %>
