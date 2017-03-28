@@ -57,6 +57,7 @@ group :development do
   gem 'guard'
   gem 'guard-minitest'
   gem 'guard-livereload', '~> 2.5', require: false
+  gem 'letter_opener'
 end
 
 gem 'rails_12factor', group: :production
